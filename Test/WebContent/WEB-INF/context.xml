@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<Context>
+	<Resource name="jdbc/mydb2" type="javax.sql.DataSource"
+		maxActive="10" maxIdle="5" maxWait="5000" username="bbipadm" password="bbipadm"
+		driverClassName="com.ibm.db2.jcc.DB2Drive"
+		url="com.ibm.db2.jcc.DB2Drive://182.16.11.124:60013;databaseName=bbipdb" />
+
+</Context>

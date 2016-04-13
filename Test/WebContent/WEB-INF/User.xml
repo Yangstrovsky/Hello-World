@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+	<!--list:Root -->
+	<User id="01">
+		<!--User:NodeList, Attribute id -->
+		<name>Yang</name>
+		<!--name:Element,value=item(0).getFirstChild.getNodeValue -->
+		<phone>001</phone>
+		<address>BANKCOMM</address>
+	</User>
+	<User id="02">
+		<name>Zhao</name>
+		<phone>002</phone>
+		<address>ICBC</address>
+	</User>
+	<User id="03">
+		<name>Qian</name>
+		<phone>003</phone>
+		<address>CCB</address>
+	</User>
+</list>
