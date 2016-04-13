@@ -1,10 +1,14 @@
 package com.dao.user;
 
-import java.awt.List;
+import java.util.List;
 
 import com.dao.general.DBConnection;
 import com.object.User;
-
+/**
+ * DAO代理类，实现连接管理及SQL执行
+ * @author Yang
+ *
+ */
 public class UserImpProxy implements UserDao {
 	private DBConnection dbconnection;
 	private UserDaoImp daoimp;
@@ -22,21 +26,22 @@ public class UserImpProxy implements UserDao {
 			 
 		 }
 	@Override
-	public User findbyID(String id) throws Exception {
-		User user=new User();
-		try {
-			daoimp.findbyID(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		finally {
+	public boolean findbyID (String id, List<User> list) throws Exception {
+		
+		if (this.daoimp.findbyID(id, list)) {
+			
 			dbconnection.close();
+			return true;
+		} else {
+			dbconnection.close();
+            return false;
 		}
-			return user;
+		
+			
 	}
 
 	@Override
-	public List findbyName() throws Exception {
+	public List<String> findbyName() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

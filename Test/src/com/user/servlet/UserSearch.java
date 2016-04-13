@@ -1,5 +1,9 @@
 package com.user.servlet;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -8,16 +12,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dao.user.UserDaoFactory;
+
+import com.dao.user.UserImpProxy;
+import com.object.User;
+
 /**
  * Servlet implementation class UserSearch
  */
 @WebServlet("/UserSearch")
 public class UserSearch extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String id;
-	private String name;
-	private String phone;
-	private String address;
 
 	/**
 	 * Default constructor.
@@ -32,10 +37,35 @@ public class UserSearch extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-this.id=request.getParameter("id");
 
-		
-		
+		User user = new User();
+		List<User> list = new ArrayList<User>();
+		String id = null;
+
+		id = request.getParameter("id");
+
+		UserImpProxy userdao;
+		try {
+			userdao = UserDaoFactory.getUserDaoInstance();
+
+			if (userdao.findbyID(id, list)) {
+				System.out.println("查询成功！");
+			
+					request.setAttribute("flag", 1);
+					request.setAttribute("result", list);
+					
+				
+			} else {
+				System.out.println("未查询到相关记录！");
+				request.setAttribute("flag", 0);
+				request.setAttribute("info", "No Results！");
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		request.getRequestDispatcher("result.jsp").forward(request, response);
 		response.getWriter().append("Served at: ")
 				.append(request.getContextPath());
 	}

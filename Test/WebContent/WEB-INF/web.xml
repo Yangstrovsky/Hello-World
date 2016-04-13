@@ -9,4 +9,12 @@
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>
 	</resource-ref>
+<servlet>
+	<servlet-name>usersearch</servlet-name>
+    <servlet-class>com.user.servlet.UserSearch</servlet-class>
+ </servlet>
+	<servlet-mapping>
+		<servlet-name>usersearch</servlet-name>
+		<url-pattern>/jsp/usersearch.do</url-pattern>
+	</servlet-mapping>
 </web-app>
